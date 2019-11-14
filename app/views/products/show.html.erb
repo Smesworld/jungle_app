@@ -23,6 +23,12 @@
           <dt>Price</dt>
           <% active_sale? %>
           <dd><div class="<%= 'strike' if @discount %>"><%= humanized_money_with_symbol @product.price %></div><div class="<%= 'sale' if @discount %>"><%= humanized_money_with_symbol @product.price * @discount if @discount %></div></dd>
+          <dt></dt>
+          <dd>
+            <%= button_to add_item_cart_path(product_id: @product.id), class: 'btn btn-primary' , method: :post do %>
+              <%= fa_icon "shopping-cart", text: 'Add' %>
+            <% end %>
+          </dd>
         </dl>
       </div>
     </div>
