@@ -36,8 +36,6 @@ gem 'rmagick'
 gem 'stripe'
 gem 'faker'
 
-gem 'dotenv-rails', groups: [:development, :test]
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

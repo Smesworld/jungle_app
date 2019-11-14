@@ -1,5 +1,13 @@
 class Sale < ActiveRecord::Base
 
+  def self.active
+    where("sales.starts_on <= ? AND sales.ends_on >= ?", Date.current, Date.current)
+  end
+
+  def self.percent_off
+    select(:name, "max(#{:percent_off}) AS percent_off").where("sales.starts_on <= ? AND sales.ends_on >= ?", Date.current, Date.current).group(:name)
+  end
+
   def finished?
     ends_on < Date.current
   end
