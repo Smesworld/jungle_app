@@ -4,8 +4,8 @@ module SalesHelper
 
     if active
       @sale = Sale.percent_off[0]
-
-      @discount = (100 - @sale.percent_off) / 100
+      puts "WHYYYYYYY"
+      @discount = (100.0 - @sale.percent_off) / 100
     end
   end
 end
