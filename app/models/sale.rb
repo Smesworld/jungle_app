@@ -1,4 +1,7 @@
 class Sale < ActiveRecord::Base
+  validate :end_after_start
+  validates :name, :starts_on, :ends_on, presence: true
+
 
   def self.active
     where("sales.starts_on <= ? AND sales.ends_on >= ?", Date.current, Date.current)
@@ -18,5 +21,15 @@ class Sale < ActiveRecord::Base
 
   def active?
     !upcoming? && !finished?
+  end
+
+  private
+
+  def end_after_start
+    return if starts_on.blank? || ends_on.blank?
+    
+    if ends_on < starts_on
+      errors.add(:end_date, "must be after the Start date")
+    end
   end
 end

@@ -1,6 +1,6 @@
-class Admin::SalesController < ApplicationController
+class Admin::SalesController < Admin::AdminBaseController
   def index
-    @sales = Sale.all
+    @sales = Sale.order(starts_on: :desc).all
   end
 
   def new
