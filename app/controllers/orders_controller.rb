@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  include SalesHelper
 
   def show
     @order = Order.find(params[:id])
@@ -6,6 +7,8 @@ class OrdersController < ApplicationController
   end
 
   def create
+    @discount = active_sale?
+    puts "Made the call disc: #{@discount}"
     charge = perform_stripe_charge
     order  = create_order(charge)
 
@@ -30,7 +33,7 @@ class OrdersController < ApplicationController
   def perform_stripe_charge
     Stripe::Charge.create(
       source:      params[:stripeToken],
-      amount:      cart_subtotal_cents,
+      amount:      (cart_subtotal_cents * (@discount || 1)).to_i,
       description: "Khurram Virani's Jungle Order",
       currency:    'cad'
     )
@@ -39,7 +42,7 @@ class OrdersController < ApplicationController
   def create_order(stripe_charge)
     order = Order.new(
       email: params[:stripeEmail],
-      total_cents: cart_subtotal_cents,
+      total_cents: (cart_subtotal_cents * (@discount || 1)).to_i,
       stripe_charge_id: stripe_charge.id, # returned by stripe
     )
 
@@ -49,8 +52,8 @@ class OrdersController < ApplicationController
       order.line_items.new(
         product: product,
         quantity: quantity,
-        item_price: product.price,
-        total_price: product.price * quantity
+        item_price: (product.price * (@discount || 1)).to_i,
+        total_price: (product.price * quantity * (@discount || 1)).to_i
       )
     end
     order.save!

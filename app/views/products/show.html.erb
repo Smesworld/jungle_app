@@ -19,6 +19,11 @@
 
       <div class="col-sm-8">
         <dl class="dl-horizontal">
+          <dd>
+            <% if !product_available? @product %>
+              <p class="alert alert-danger">SOLD OUT</p>
+            <% end %>
+          </dd>
           <dt>Name</dt>
           <dd><%= @product.name %></dd>
           <dt>Description</dt>
@@ -30,8 +35,10 @@
           <dd><div class="<%= 'strike' if @discount %>"><%= humanized_money_with_symbol @product.price %></div><div class="<%= 'sale' if @discount %>"><%= humanized_money_with_symbol @product.price * @discount if @discount %></div></dd>
           <dt></dt>
           <dd>
-            <%= button_to add_item_cart_path(product_id: @product.id), class: 'btn btn-primary' , method: :post do %>
-              <%= fa_icon "shopping-cart", text: 'Add' %>
+            <% if product_available? @product %>
+              <%= button_to add_item_cart_path(product_id: @product.id), class: 'btn btn-primary' , method: :post do %>
+                <%= fa_icon "shopping-cart", text: 'Add' %>
+              <% end %>
             <% end %>
           </dd>
         </dl>

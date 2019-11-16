@@ -1,7 +1,7 @@
 class Sale < ActiveRecord::Base
   validate :end_after_start
   validates :name, :starts_on, :ends_on, presence: true
-
+  validates :percent_off, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
 
   def self.active
     where("sales.starts_on <= ? AND sales.ends_on >= ?", Date.current, Date.current)
