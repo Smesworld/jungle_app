@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
 
   def create
     @discount = active_sale?
-    puts "Made the call disc: #{@discount}"
+
     charge = perform_stripe_charge
     order  = create_order(charge)
 
