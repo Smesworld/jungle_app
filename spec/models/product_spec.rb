@@ -41,6 +41,5 @@ RSpec.describe Product, type: :model do
       expect(subject).to_not be_valid
       expect(subject.errors.full_messages).to include("Category can't be blank")
     end
-
   end
 end

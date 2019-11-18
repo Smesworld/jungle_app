@@ -74,7 +74,6 @@ RSpec.describe User, type: :model do
       expect(subject).to_not be_valid
       expect(subject.errors.full_messages).to include("Email has already been taken")
     end
-
   end
 
   describe '.authenticate_with_credentials' do
@@ -112,5 +111,4 @@ RSpec.describe User, type: :model do
       expect(User.authenticate_with_credentials("eMaIl@tEst.cOm", "test")).to be_valid
     end
   end
-
 end
