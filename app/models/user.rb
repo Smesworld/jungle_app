@@ -10,8 +10,6 @@ class User < ActiveRecord::Base
   def self.authenticate_with_credentials(email, password)
     user = User.find_by(email: email.strip)
 
-    puts user.inspect
-
     if user && user.authenticate(password)
       user
     else

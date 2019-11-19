@@ -16,7 +16,7 @@ RSpec.feature "AddToCarts", type: :feature, js: true do
       end
     end
 
-    scenario "They see all products" do
+    scenario "They see a product was added to cart" do
       # ACT
       visit root_path
 
@@ -24,7 +24,7 @@ RSpec.feature "AddToCarts", type: :feature, js: true do
   
       first('article.product').find_button('Add').click
       # DEBUG / VERIFY
-      save_screenshot
+      # save_screenshot
 
       expect(page).to have_text 'My Cart (1)'
   
