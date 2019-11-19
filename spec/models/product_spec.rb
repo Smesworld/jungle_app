@@ -1,6 +1,4 @@
 require 'rails_helper'
-require 'product'
-require 'category'
 
 RSpec.describe Product, type: :model do
   describe "Validations" do
