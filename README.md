@@ -4,7 +4,17 @@ Jungle is a mini e-commerce application built with Rails 4.2 for purposes of tea
 
 ## Final Product
 
+[Home Products](https://github.com/Smesworld/jungle_app/blob/master/docs/home-products.png)
 
+[Category Sale](https://github.com/Smesworld/jungle_app/blob/master/docs/category-sale.png)
+
+[Checkout Sale](https://github.com/Smesworld/jungle_app/blob/master/docs/checkout-sale.png)
+
+[Failed Login](https://github.com/Smesworld/jungle_app/blob/master/docs/failed-login-sale.png)
+
+[Admin Dashboard](https://github.com/Smesworld/jungle_app/blob/master/docs/admin-dashboard.png)
+
+[Admin Sales](https://github.com/Smesworld/jungle_app/blob/master/docs/admin-sales.png)
 
 ## Setup
 
