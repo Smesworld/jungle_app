@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
   def create_order(stripe_charge)
     order = Order.new(
       email: params[:stripeEmail],
-      total_cents: cart_subtotal_cents * (@discount || 1),
+      total_cents: cart_subtotal_cents,
       stripe_charge_id: stripe_charge.id, # returned by stripe
     )
 
@@ -52,8 +52,8 @@ class OrdersController < ApplicationController
       order.line_items.new(
         product: product,
         quantity: quantity,
-        item_price: product.price * (@discount || 1),
-        total_price: product.price * quantity * (@discount || 1)
+        item_price: product.price,
+        total_price: product.price * quantity
       )
     end
     order.save!
