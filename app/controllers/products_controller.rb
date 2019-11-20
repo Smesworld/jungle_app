@@ -9,8 +9,6 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find params[:id]
-    discount = get_discount
-    @product = apply_discount(@product, discount)
   end
 
 end
