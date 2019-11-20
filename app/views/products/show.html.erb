@@ -32,7 +32,7 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <% active_sale? %>
-          <dd><div class="<%= 'strike' if @discount %>"><%= humanized_money_with_symbol @product.price %></div><div class="<%= 'sale' if @discount %>"><%= humanized_money_with_symbol @product.price * @discount if @discount %></div></dd>
+          <dd><div class="<%= 'strike' if @discount %>"><%= humanized_money_with_symbol @product.price %></div><div class="<%= 'sale' if @discount %>"><%= humanized_money_with_symbol @product.price if @discount %></div></dd>
           <dt></dt>
           <dd>
             <% if product_available? @product %>

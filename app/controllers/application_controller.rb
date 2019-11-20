@@ -22,7 +22,6 @@ class ApplicationController < ActionController::Base
 
   def enhanced_cart
     discount = get_discount
-    puts "DISCOUNT #{discount}"
     @enhanced_cart ||= Product.where(id: cart.keys).map {|product| { product: apply_discount(product, discount), quantity: cart[product.id.to_s] } }
   end
   helper_method :enhanced_cart
