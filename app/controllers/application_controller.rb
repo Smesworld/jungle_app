@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include SalesHelper
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -20,7 +21,9 @@ class ApplicationController < ActionController::Base
   helper_method :cart
 
   def enhanced_cart
-    @enhanced_cart ||= Product.where(id: cart.keys).map {|product| { product:product, quantity: cart[product.id.to_s] } }
+    discount = get_discount
+    puts "DISCOUNT #{discount}"
+    @enhanced_cart ||= Product.where(id: cart.keys).map {|product| { product: apply_discount(product, discount), quantity: cart[product.id.to_s] } }
   end
   helper_method :enhanced_cart
 
